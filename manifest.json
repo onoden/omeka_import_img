@@ -1,0 +1,82 @@
+{
+	"@context": "http://iiif.io/api/presentation/2/context.json",
+	"@id": "http://ccb2db68-a0ee-4fc0-adfc-e7a5e2942991",
+	"@type": "sc:Manifest",
+	"label": "[Click to edit label]",
+	"metadata": [],
+	"description": [
+		{
+			"@value": "[Click to edit description]",
+			"@language": "en"
+		}
+	],
+	"license": "https://creativecommons.org/licenses/by/3.0/",
+	"attribution": "[Click to edit attribution]",
+	"sequences": [
+		{
+			"@id": "http://d0ad5ff4-943c-4766-a10f-88d05641bcf5",
+			"@type": "sc:Sequence",
+			"label": [
+				{
+					"@value": "Normal Sequence",
+					"@language": "en"
+				}
+			],
+			"canvases": [
+				{
+					"@id": "http://b9da39f6-f801-43fe-a10c-7eef615f5842",
+					"@type": "sc:Canvas",
+					"label": "Empty canvas",
+					"height": 2987,
+					"width": 3600,
+					"images": [
+						{
+							"@context": "http://iiif.io/api/presentation/2/context.json",
+							"@id": "http://b9bc744a-991f-4d4d-845a-4e610b39b26e",
+							"@type": "oa:Annotation",
+							"motivation": "sc:painting",
+							"resource": {
+								"@id": "http://localhost:5004/01/03/0001.jpg/full/full/0/default.jpg",
+								"@type": "dctypes:Image",
+								"format": "image/jpeg",
+								"service": {
+									"@context": "http://iiif.io/api/image/2/context.json",
+									"@id": "http://localhost:5004/01/03/0001.jpg",
+									"profile": [
+										"http://iiif.io/api/image/2/level2.json",
+										{
+											"supports": [
+												"canonicalLinkHeader",
+												"profileLinkHeader",
+												"mirroring",
+												"rotationArbitrary",
+												"regionSquare",
+												"sizeAboveFull"
+											],
+											"qualities": [
+												"default",
+												"color",
+												"gray",
+												"bitonal"
+											],
+											"formats": [
+												"jpg",
+												"png",
+												"gif",
+												"webp"
+											]
+										}
+									]
+								},
+								"height": 2987,
+								"width": 3600
+							},
+							"on": "http://b9da39f6-f801-43fe-a10c-7eef615f5842"
+						}
+					]
+				}
+			]
+		}
+	],
+	"structures": []
+}
