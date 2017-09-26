@@ -1,31 +1,31 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
 var fs = require('fs-extra');
+var request = require('sync-request');
+
+var i = 0;
+
+while(true){
+  var url = 'http://localhost:5004/images/' + i + '.jpg';
+  var response = request('GET', url);
 
 
-var url = 'http://localhost:5004/images/0.jpg';
-
-request(
-{method: 'GET', url: url, encoding: null},
-function(error, response, body){
-  if(!error, response.statusCode === 200){
-    var data = JSON.parse(body);
-    
+  if(!response.error && response.statusCode === 200){
+    var data = JSON.parse(response.body);
     var json = require('../manifest.json');
-    json['@id'] = '0'
+    json['@id'] = i
     
     var sequences = json.sequences[0];
-    sequences['@id'] = '0_sq'  
+    sequences['@id'] = i + '_sq'  
     
     var canvases = sequences.canvases[0];
-    canvases['@id'] = '0_cnv'
+    canvases['@id'] = i + '_cnv'
     canvases.height = data.height;
     canvases.width = data.width;
     
     var images = canvases.images[0];
-    images['@id'] = '0_img' 
-    images.on = '0_on';
+    images['@id'] = i + '_img' 
+    images.on = i + '_on';
     
     var resource = images.resource;
     resource['@id'] = url + '/full/full/0/default.jpg';    
@@ -37,17 +37,12 @@ function(error, response, body){
     service['@id'] = data['@id'];
     service.profile = data.profile;
     
-    fs.writeFile('/home/kyoino/0_manifest.json', JSON.stringify(json, null, '  '));
-  }
+    fs.writeFile('/home/kyoino/' + i + '_manifest.json', JSON.stringify(json, null, '  '));
+    i += 1;
+  } else {
+      break;
+    }
 }
-);
-
-//var dimensions = sizeOf('./tmp/01.png');
-//console.log(typeOf(dimensions));
-
-//fs.removeSync('./tmp');
-//return;
-
 
 
 

@@ -13,24 +13,24 @@ var connection = mysql.createConnection({
 
 
 if(connection){
-console.log('ok');
+//console.log('ok');
 } else {
- console.log(typeOf(connection));
+// console.log(typeOf(connection));
 }
 
 connection.query("select text from omeka_element_texts where record_id = 10", function(error, result, fields){
   if(error){
-    console.error('error connection:' + err.stack);
+//    console.error('error connection:' + err.stack);
     return;
   }
 
 
   array = result[0].text.split(':');
   annotation = array[1];
-  console.log(annotation);
+//  console.log(annotation);
 
   range = result[3].text;
-  console.log(range);
+//  console.log(range);
   
 });
 
