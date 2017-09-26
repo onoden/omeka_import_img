@@ -3,8 +3,8 @@ var router = express.Router();
 var fs = require('fs-extra');
 var request = require('sync-request');
 
-var i = 0;
 
+var i = 0;
 while(true){
   var url = 'http://localhost:5004/images/' + i + '.jpg';
   var response = request('GET', url);
@@ -37,12 +37,23 @@ while(true){
     service['@id'] = data['@id'];
     service.profile = data.profile;
     
-    fs.writeFile('/home/kyoino/' + i + '_manifest.json', JSON.stringify(json, null, '  '));
+//    fs.writeFile('/home/kyoino/import_data/files/' + i + '_manifest.json', JSON.stringify(json, null, '  '));
+    str = JSON.stringify(json, null, '   ');
+    row = str.replace(/\s|\n/g,"");
+    row = row.replace(/"/g,"\"\"");
+    fs.writeFile('/home/kyoino/meta_data.csv',"");
+    fs.appendFile('/home/kyoino/meta_data.csv', '"' + row + '",\n', 'utf-8');
     i += 1;
   } else {
+      fs.readFile('/home/kyoino/meta_data.csv', 'utf-8', 
+      function(err, data){
+        var text = data.slice(0, -2);
+        fs.writeFile('/home/kyoino/meta_data.csv', text);
+      });      
       break;
     }
 }
+
 
 
 
