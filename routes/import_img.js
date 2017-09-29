@@ -42,6 +42,7 @@ while(true){
     row = str.replace(/\s|\n/g,"");
     row = row.replace(/"/g,"\"\"");
     fs.writeFile('/home/kyoino/meta_data.csv',"");
+//    fs.appendFile('/home/kyoino/meta_data.csv', '"' + row + '",\n', 'utf-8');
     fs.appendFile('/home/kyoino/meta_data.csv', '"' + row + '",\n', 'utf-8');
     i += 1;
   } else {
